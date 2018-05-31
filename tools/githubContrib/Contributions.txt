@@ -1,2 +1,2 @@
-Here is the current (as of January 2018) alphabetical list of companies and the number of contributors:
-Apache.org (1), Apprenda (1), Calcotestudios (1), CMU (1), Google (34), Hashbangbash (1), Hootsuite (1), Ibm (11), Redhat (2), Unknown (12)
+Here is the current (as of May 2018) alphabetical list of companies and the number of contributors:
+Apache.org (1), Calcotestudios (1), Carnegiemellonuniversity (1), Chinamobile (1), Ciscosystems (4), Cloudfoundry (1), Datadog (1), Google (37), Hashbangbash (1), Ibm (12), Kpn (1), Mercari, (1), Pivotal (2), Redhat (4), Redhotpenguinconsultingllc (1), Sapse (1), Stealthstartup (1), Suse (1), Tigera (2), Unknown (18), Ztecorporation (1), öhm.de (1)

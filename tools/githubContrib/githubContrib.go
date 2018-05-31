@@ -101,6 +101,29 @@ func prettyPrintJSON(body []byte) {
 	checkOrDie(err, "Unable to Write json")
 }
 
+const PER_PAGE int = 100
+
+func getUsers(contributorsURL string) []userC {
+	page := 1
+	var currentURL string
+	var u []userC
+	var users []userC
+	for {
+		currentURL = fmt.Sprintf("%s?per_page=%d&page=%d", contributorsURL, PER_PAGE, page)
+		// fmt.Println(currentURL)
+		extractResult(currentURL, &u)
+		users = append(users, u...)
+
+		page++
+
+		if len(u) != PER_PAGE {
+			break
+		}
+	}
+
+	return users
+}
+
 // repo is what we use from github rest api v3 listing repositories per org.
 type repo struct {
 	ID              int64  `json:"id"`
@@ -168,13 +191,16 @@ func main() {
 	userMap := make(map[string]int64)
 	forksCount := 0
 	for _, r := range repos {
+		if r.FullName != "istio/istio" {
+			continue
+		}
 		if r.IsFork {
 			log.Printf("Skipping %s which is a fork", r.Name)
 			forksCount++
 			continue
 		}
-		var users []userC
-		extractResult(r.ContributorsURL, &users)
+		users := getUsers(r.ContributorsURL)
+
 		for _, u := range users {
 			userMap[u.Login] += u.Contributions
 		}
